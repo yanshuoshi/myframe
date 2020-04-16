@@ -25,6 +25,6 @@
 	
 	<plugins>
 		<!-- 打印sql拦截器 -->
-		<plugin interceptor="com.yss.config.interceptor.MybatisInterceptor"></plugin>
+		<plugin interceptor="com.yss.cn.config.interceptor.MybatisInterceptor"></plugin>
 	</plugins>
 </configuration>

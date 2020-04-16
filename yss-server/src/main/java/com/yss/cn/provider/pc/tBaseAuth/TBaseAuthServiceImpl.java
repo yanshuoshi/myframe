@@ -1,17 +1,17 @@
 package com.yss.cn.provider.pc.tBaseAuth;
 
-import com.yss.api.io.pc.tBaseAuth.TBaseAuthIO;
-import com.yss.api.result.pc.tBaseAuth.TBaseAuthResult;
-import com.yss.api.service.pc.tBaseAuth.TBaseAuthService;
-import com.yss.persistence.dao.pc.TBaseAuthMapper;
-import com.yss.persistence.entity.pc.TBaseAuth;
+import com.yss.cn.api.io.pc.tBaseAuth.TBaseAuthIO;
+import com.yss.cn.api.result.pc.tBaseAuth.TBaseAuthResult;
+import com.yss.cn.api.service.pc.tBaseAuth.TBaseAuthService;
+import com.yss.cn.common.utils.BeanUtil;
+import com.yss.cn.io.PageListIO;
+import com.yss.cn.results.FormListResult;
+import com.yss.cn.persistence.dao.pc.TBaseAuthMapper;
+import com.yss.cn.persistence.entity.pc.TBaseAuth;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.yss.results.*;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.yss.common.utils.*;
-import com.yss.io.*;
 
 import javax.annotation.Resource;
 import java.util.List;

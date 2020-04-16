@@ -1,11 +1,11 @@
 package com.yss.cn.config.advices;
 
-import com.yss.api.exception.UnAuthorizedException;
-import com.yss.auth.Authorization;
+import com.yss.cn.api.exception.UnAuthorizedException;
+import com.yss.cn.auth.Authorization;
 import com.yss.cn.api.app.token.TokenHelper;
-import com.yss.common.auth.TokenResult;
+import com.yss.cn.common.auth.TokenResult;
 import com.yss.cn.config.util.ApplicationContextUtil;
-import com.yss.constants.Constants;
+import com.yss.cn.constants.Constants;
 import org.springframework.web.method.HandlerMethod;
 
 import javax.servlet.http.HttpServletRequest;

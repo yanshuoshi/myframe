@@ -1,8 +1,8 @@
 package com.yss.cn.config.advices;
 
-import com.yss.api.exception.AppRuntimeException;
-import com.yss.api.exception.UnAuthorizedException;
-import com.yss.results.ApiResult;
+import com.yss.cn.api.exception.AppRuntimeException;
+import com.yss.cn.api.exception.UnAuthorizedException;
+import com.yss.cn.results.ApiResult;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.validation.ObjectError;

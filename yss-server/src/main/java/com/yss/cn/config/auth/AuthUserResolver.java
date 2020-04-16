@@ -1,7 +1,7 @@
 package com.yss.cn.config.auth;
 
-import com.yss.auth.AuthToken;
-import com.yss.common.auth.TokenResult;
+import com.yss.cn.auth.AuthToken;
+import com.yss.cn.common.auth.TokenResult;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;

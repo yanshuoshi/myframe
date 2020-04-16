@@ -1,16 +1,16 @@
 package com.yss.cn.api.app.tBaseAuth.Controller;
 
 
-import com.yss.api.io.pc.tBaseAuth.TBaseAuthIO;
-import com.yss.api.io.pc.tBaseAuth.TBaseAuthListFromIO;
-import com.yss.api.result.pc.tBaseAuth.TBaseAuthListResult;
-import com.yss.api.result.pc.tBaseAuth.TBaseAuthResult;
-import com.yss.api.service.pc.tBaseAuth.TBaseAuthService;
-import com.yss.io.PageListIO;
-import com.yss.io.SimpleIO;
-import com.yss.io.SimpleListIO;
-import com.yss.results.ApiResult;
-import com.yss.results.FormListResult;
+import com.yss.cn.api.io.pc.tBaseAuth.TBaseAuthIO;
+import com.yss.cn.api.io.pc.tBaseAuth.TBaseAuthListFromIO;
+import com.yss.cn.api.result.pc.tBaseAuth.TBaseAuthListResult;
+import com.yss.cn.api.result.pc.tBaseAuth.TBaseAuthResult;
+import com.yss.cn.api.service.pc.tBaseAuth.TBaseAuthService;
+import com.yss.cn.io.PageListIO;
+import com.yss.cn.io.SimpleIO;
+import com.yss.cn.io.SimpleListIO;
+import com.yss.cn.results.ApiResult;
+import com.yss.cn.results.FormListResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

@@ -1,8 +1,8 @@
 package com.yss.cn.provider.pc.token;
 
-import com.yss.api.service.pc.token.TokenService;
+import com.yss.cn.api.service.pc.token.TokenService;
 import com.yss.cn.config.util.TokenUtil;
-import com.yss.common.auth.TokenResult;
+import com.yss.cn.common.auth.TokenResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
