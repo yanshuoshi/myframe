@@ -1,15 +1,12 @@
 package com.yss.cn.common.utils;
 
-import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+
 /**
- * @author:Shuoshi.Yan
- * @description:sha1  sha256加密
- * @date: 2019/12/25 10:57
+ * created by on ShuoShi Yan
+ * sha256加密、sha1加密
  */
-public class ShaUtil {
-	
+public class EncryptionUtil {
 	// 对字符串进行sha256加密
 	public static String sha256(String str) {
 		try {
@@ -54,10 +51,5 @@ public class ShaUtil {
 		}
 		return "";
 	}
-
-    public static void main(String[] args) {
-        System.out.println(ShaUtil.sha1("123456"));
-        System.out.println(ShaUtil.sha256("123456"));
-    }
 	
 }

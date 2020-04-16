@@ -2,6 +2,7 @@ package com.yss.cn.common.utils;
 
 import com.github.dozermapper.core.DozerBeanMapperBuilder;
 import com.github.dozermapper.core.Mapper;
+import com.yss.cn.api.io.pc.tBaseAuth.TBaseAuthIO;
 
 import java.beans.BeanInfo;
 import java.beans.IntrospectionException;
@@ -34,7 +35,7 @@ public class BeanUtil {
      * @param: 
      * @return: 
      */
-    public static <T> T cast(Object source, Class<T> targetClass) {
+    public static <T> T mapToBean(Object source, Class<T> targetClass) {
         T result = mapper.map(source, targetClass);
         return result;
     }
@@ -71,5 +72,15 @@ public class BeanUtil {
             e.printStackTrace();
         }
         return map;
+    }
+
+    public static void main(String[] args) {
+        TBaseAuthIO tBaseAuthIO = new TBaseAuthIO();
+        tBaseAuthIO.setAuthId("1");
+        tBaseAuthIO.setAuthMode("1");
+        System.out.println("beanToMap" + BeanUtil.beanToMap(tBaseAuthIO));
+        Map map = new HashMap();
+        map.put("authId","1");
+        System.out.println("MapToBean" + BeanUtil.mapToBean(map,TBaseAuthIO.class));
     }
 }

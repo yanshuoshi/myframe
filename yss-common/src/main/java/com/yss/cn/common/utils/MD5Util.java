@@ -4,8 +4,8 @@ import java.security.MessageDigest;
 
 /**
  * @author Shuoshi.Yan
- * @package:com.yss.common.utils
- * @className:MD5操纵
+ * @package:com.yss.cn.common.utils
+ * @className:MD5操作
  * @description:
  * @date 2019-12-25 10:58
  * @version:V1.0

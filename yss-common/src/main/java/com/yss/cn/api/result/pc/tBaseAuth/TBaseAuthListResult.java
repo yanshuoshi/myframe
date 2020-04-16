@@ -1,7 +1,6 @@
 package com.yss.cn.api.result.pc.tBaseAuth;
 
 import lombok.Data;
-import net.sf.jsqlparser.expression.DateTimeLiteralExpression;
 
 import java.util.Date;
 
@@ -81,7 +80,7 @@ public class TBaseAuthListResult {
     /**
      * 修改时间
      */
-    private DateTimeLiteralExpression.DateTime updateTime;
+    private Date updateTime;
 
     /**
      * 备注

@@ -39,6 +39,7 @@ import java.security.spec.InvalidKeySpecException;
  * PBKDF2 salted password hashing.
  * Author: havoc AT defuse.ca
  * www: http://crackstation.net/hashing-security.htm
+ * 密码加密，采用PBKDF2 + Hmac + SHA1 三种结合加密算法
  */
 public class PasswordUtil
 {
@@ -193,4 +194,7 @@ public class PasswordUtil
             return hex;
     }
 
+    public static void main(String[] args) {
+        System.out.println(PasswordUtil.createHash("123456"));
+    }
 }

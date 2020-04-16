@@ -18,9 +18,9 @@ public class Constants {
     //  接口token缓存
     public static final long TOKEN_EXPIRES_DAY = 7;
 
-    public final static String kCode_Success = "0";          //  成功
-    public final static String kCode_Fail = "1";          //  失败
-    public final static String kCode_SessionError = "2001";       //  登陆超时
+    public final static String kCode_Success = "0";//成功
+    public final static String kCode_Fail = "1";//失败
+    public final static String kCode_SessionError = "2001";//登陆超时
 
     public final static String kPrefix_PC = "PC";
 }

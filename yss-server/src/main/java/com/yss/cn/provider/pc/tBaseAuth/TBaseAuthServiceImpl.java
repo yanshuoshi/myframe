@@ -37,19 +37,19 @@ public class TBaseAuthServiceImpl implements TBaseAuthService {
 
     @Override
     public TBaseAuthResult findTBaseAuthResultById(Integer id){
-        return BeanUtil.cast(tBaseAuthMapper.selectById(id), TBaseAuthResult.class);
+        return BeanUtil.mapToBean(tBaseAuthMapper.selectById(id), TBaseAuthResult.class);
     }
 
     @Override
     public void saveTBaseAuth(TBaseAuthIO io){
-        TBaseAuth entity = BeanUtil.cast(io, TBaseAuth.class);
+        TBaseAuth entity = BeanUtil.mapToBean(io, TBaseAuth.class);
         //  TODO 补充set
         tBaseAuthMapper.insert(entity);
     }
 
     @Override
     public void updateTBaseAuth(TBaseAuthIO io) {
-        TBaseAuth entity = BeanUtil.cast(io, TBaseAuth.class);
+        TBaseAuth entity = BeanUtil.mapToBean(io, TBaseAuth.class);
         //  TODO 补充set
         tBaseAuthMapper.updateById(entity);
     }

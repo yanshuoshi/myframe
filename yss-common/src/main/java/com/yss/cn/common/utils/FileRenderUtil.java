@@ -10,6 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLEncoder;
 
+/**
+ * @author:Shuoshi.Yan
+ * @description:文件导出提交
+ * @date: 2020/4/16 15:07
+ */
 public class FileRenderUtil {
 
     private static final String DEFAULT_CONTENT_TYPE = "application/octet-stream";

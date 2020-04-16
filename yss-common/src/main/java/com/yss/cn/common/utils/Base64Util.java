@@ -6,8 +6,6 @@ import java.util.Base64;
  * @author:Shuoshi.Yan
  * @description: Base64
  * @date: 2019/12/25 10:57
- * @param: 
- * @return: 
  */
 public class Base64Util {
 	final static Base64.Encoder encoder = Base64.getEncoder();

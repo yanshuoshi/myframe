@@ -3,7 +3,7 @@ package com.yss.cn.api.result.pc.tBaseAuth;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * @author Shuoshi.Yan
@@ -70,7 +70,7 @@ public class TBaseAuthResult implements Serializable {
     /**
      * 创建时间（授权时间）
      */
-    private LocalDateTime createTime;
+    private Date createTime;
 
     /**
      * 修改人
@@ -80,7 +80,7 @@ public class TBaseAuthResult implements Serializable {
     /**
      * 修改时间
      */
-    private LocalDateTime updateTime;
+    private Date updateTime;
 
     /**
      * 备注

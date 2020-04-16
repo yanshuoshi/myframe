@@ -3,7 +3,9 @@ package com.yss.cn.common.utils;
 import java.util.Random;
 
 /**
- * 验证码随机生成
+ * @author:Shuoshi.Yan
+ * @description: 验证码随机生成
+ * @date: 2020/4/16 16:22
  */
 public class RandomUtil {
     public static Random random = new Random();
@@ -37,7 +39,7 @@ public class RandomUtil {
     }
 
     public static void main(String[] args) {
-        System.out.println(RandomUtil.getRandom(3));
+        System.out.println(RandomUtil.getRandomNumber(3));
     }
 
 

@@ -21,7 +21,6 @@ import java.util.Date;
 @ApiModel(value = "TBaseAuthIO", description = "TBaseAuthIO描述")
 public class TBaseAuthIO implements Serializable {
 
-    private static final long serialVersionUID = 1L;
     @ApiModelProperty(value = "序号")
     private Long id;
     @ApiModelProperty(value = "编码")
@@ -45,13 +44,11 @@ public class TBaseAuthIO implements Serializable {
     @ApiModelProperty(value = "创建时间（授权时间）")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createTime;
-
     @ApiModelProperty(value = "修改人")
     private String updateUser;
     @ApiModelProperty(value = "修改时间")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date updateTime;
-
     @ApiModelProperty(value = "备注")
     private String remark;
 }
