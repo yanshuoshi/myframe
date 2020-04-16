@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/myframe.iml" filepath="$PROJECT_DIR$/.idea/myframe.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yss-common/yss-common.iml" filepath="$PROJECT_DIR$/yss-common/yss-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yss-dao/yss-dao.iml" filepath="$PROJECT_DIR$/yss-dao/yss-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yss-server/yss-server.iml" filepath="$PROJECT_DIR$/yss-server/yss-server.iml" />
+    </modules>
+  </component>
+</project>
