@@ -1,7 +1,6 @@
 package com.yss.cn.config.interceptor;
 
 import lombok.extern.slf4j.Slf4j;
-import org.aopalliance.intercept.Invocation;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.BoundSql;

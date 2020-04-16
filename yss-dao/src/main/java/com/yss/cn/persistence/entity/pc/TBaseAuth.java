@@ -12,10 +12,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * <p>
  * 授权管理-授权表
- * </p>
- *
  * @author ShuoShi Yan
  * @since 2019-12-23
  */
@@ -94,7 +91,6 @@ public class TBaseAuth implements Serializable {
     @TableField("create_time")
     private Date createTime;
 
-
     /**
      * 修改人
      */
@@ -106,7 +102,6 @@ public class TBaseAuth implements Serializable {
      */
     @TableField("update_time")
     private Date updateTime;
-
 
     /**
      * 备注
