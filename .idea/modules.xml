@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/yss-common/yss-common.iml" filepath="$PROJECT_DIR$/yss-common/yss-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/yss-dao/yss-dao.iml" filepath="$PROJECT_DIR$/yss-dao/yss-dao.iml" />
       <module fileurl="file://$PROJECT_DIR$/yss-server/yss-server.iml" filepath="$PROJECT_DIR$/yss-server/yss-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/yss-server/yss-server.iml" filepath="$PROJECT_DIR$/yss-server/yss-server.iml" />
     </modules>
   </component>
 </project>

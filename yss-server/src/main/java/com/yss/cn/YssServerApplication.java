@@ -6,10 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @MapperScan("com.yss.persistence.dao.pc")//扫描mapper
-public class ServerApplication {
+public class YssServerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ServerApplication.class, args);
+        SpringApplication.run(YssServerApplication.class, args);
     }
 
 }
