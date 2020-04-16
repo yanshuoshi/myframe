@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yss.persistence.dao.pc.TBaseAuthMapper">
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.yss.persistence.entity.pc.TBaseAuth">
+                    <id column="id" property="id" />
+                    <result column="code" property="code" />
+                    <result column="auth_mode" property="authMode" />
+                    <result column="auth_type_code" property="authTypeCode" />
+                    <result column="auth_id" property="authId" />
+                    <result column="card_name" property="cardName" />
+                    <result column="card_deposit" property="cardDeposit" />
+                    <result column="pic" property="pic" />
+                    <result column="is_delete" property="isDelete" />
+                    <result column="create_user" property="createUser" />
+                    <result column="create_time" property="createTime" />
+                    <result column="update_user" property="updateUser" />
+                    <result column="update_time" property="updateTime" />
+                    <result column="remark" property="remark" />
+        </resultMap>
+
+        <!-- 通用查询结果列 -->
+        <sql id="BaseColumnList">
+            id, code, auth_mode, auth_type_code, auth_id, card_name, card_deposit, pic, is_delete, create_user, create_time, update_user, update_time, remark
+        </sql>
+
+    <select id="queryTBaseAuthList" resultType="com.yss.api.result.pc.tBaseAuth.TBaseAuthResult">
+        SELECT
+            <include refid="BaseColumnList"/>
+        FROM t_base_auth AS a
+        WHERE 1=1 AND a.is_delete = 0
+        <if test="updateTimeRangeStart != null and updateTimeRangeStart != ''">
+            AND a.update_time >= #{updateTimeRangeStart}
+        </if>
+        <if test="updateTimeRangeEnd != null and updateTimeRangeEnd != ''">
+            AND #{updateTimeRangeEnd} >= a.update_time
+        </if>
+    </select>
+    <update id="deleteTBaseAuthListByListId">
+        UPDATE t_base_auth AS a
+        SET a.id in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+</mapper>
