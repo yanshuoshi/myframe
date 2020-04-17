@@ -30,7 +30,7 @@ public class Swagger2Config {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.yss.cn.api.app.tBaseAuth.Controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.yss.cn.api.pc.tBaseAuth.tBaseAuthController"))
                 .paths(PathSelectors.any())
                 .build();
     }

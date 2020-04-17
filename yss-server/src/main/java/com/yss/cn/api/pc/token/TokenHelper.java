@@ -1,4 +1,4 @@
-package com.yss.cn.api.app.token;
+package com.yss.cn.api.pc.token;
 
 import com.yss.cn.api.service.pc.token.TokenService;
 import com.yss.cn.common.auth.TokenResult;

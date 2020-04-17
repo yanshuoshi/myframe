@@ -1,4 +1,4 @@
-package com.yss.cn.api.app.tBaseAuth.Controller;
+package com.yss.cn.api.pc.tBaseAuth.controller;
 
 
 import com.yss.cn.api.io.pc.tBaseAuth.TBaseAuthIO;

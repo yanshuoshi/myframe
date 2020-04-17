@@ -45,7 +45,7 @@ public class LogAspect {
     }
 
 
-//    @Pointcut("execution(public * com.wangtiansoft.stla.modules..*Controller.*(..))")
+//    @Pointcut("execution(public * com.wangtiansoft.stla.modules..*tBaseAuthController.*(..))")
 //    public void modulesWebLog() {
 //    }
 //
