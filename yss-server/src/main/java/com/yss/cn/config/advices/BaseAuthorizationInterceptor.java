@@ -2,7 +2,7 @@ package com.yss.cn.config.advices;
 
 import com.yss.cn.api.exception.UnAuthorizedException;
 import com.yss.cn.auth.Authorization;
-import com.yss.cn.api.pc.token.TokenHelper;
+import com.yss.cn.controller.token.TokenHelper;
 import com.yss.cn.common.auth.TokenResult;
 import com.yss.cn.config.util.ApplicationContextUtil;
 import com.yss.cn.constants.Constants;

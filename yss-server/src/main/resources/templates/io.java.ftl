@@ -1,34 +1,25 @@
-package ${package.Entity};
+package com.yss.cn.api.io.${table.entityPath};
 
 
-<#if entityLombokModel>
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;</#if>
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.*;
 import java.io.Serializable;
+import lombok.Data;
 /**
  * @author ${author}
  * @since ${date}
  */
 <#if entityLombokModel>
 @Data
-<#if superEntityClass??>
-@EqualsAndHashCode(callSuper = true)
-<#else>
-@EqualsAndHashCode(callSuper = false)
 </#if>
-@Accessors(chain = true)
-</#if>
-@ApiModel(value = "${entity}", description = "${entity}描述")
+@ApiModel(value = "${entity}IO", description = "${entity}IO描述")
 <#if superEntityClass??>
 public class ${entity} extends ${superEntityClass}<#if activeRecord><${entity}></#if> {
 <#elseif activeRecord>
 public class ${entity} extends Model<${entity}> {
 <#else>
-public class ${entity} implements Serializable {
+public class ${entity}IO implements Serializable {
 </#if>
 
     private static final long serialVersionUID = 1L;

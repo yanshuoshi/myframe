@@ -2,7 +2,7 @@ package com.yss.cn.common.utils;
 
 import com.github.dozermapper.core.DozerBeanMapperBuilder;
 import com.github.dozermapper.core.Mapper;
-import com.yss.cn.api.io.pc.tBaseAuth.TBaseAuthIO;
+import com.yss.cn.api.io.tBaseAuth.TBaseAuthIO;
 
 import java.beans.BeanInfo;
 import java.beans.IntrospectionException;

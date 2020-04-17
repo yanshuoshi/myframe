@@ -1,9 +1,9 @@
-package ${package.Service};
+package com.yss.cn.api.service.${table.entityPath};
 
-import com.yss.io.*;
-import com.yss.module.io.${table.entityPath}.${table.entityName}IO;
-import com.yss.module.result.${table.entityPath}.${table.entityName}Result;
-import com.yss.results.*;
+import com.yss.cn.api.io.${table.entityPath}.${table.entityName}IO;
+import com.yss.cn.api.result.${table.entityPath}.${table.entityName}Result;
+import com.yss.cn.results.*;
+import com.yss.cn.io.*;
 import java.util.List;
 
 /**
@@ -11,8 +11,8 @@ import java.util.List;
 * @author ${author}
 * @since ${date}
 */
-public interface ${table.serviceName} {
-    //分页查询 ${table.entityPath}
+public interface ${table.entityName}Service {
+    //分页查询
     FormListResult query${table.entityName}PageList(PageListIO body);
 
     //查询

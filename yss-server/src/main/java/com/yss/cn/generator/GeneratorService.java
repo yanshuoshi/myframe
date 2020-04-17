@@ -2,21 +2,13 @@ package com.yss.cn.generator;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
-import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.converts.MySqlTypeConvert;
-import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.querys.MySqlQuery;
 import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * @author Shuoshi.Yan
@@ -28,7 +20,7 @@ import java.util.Map;
  * @NOTICE：本内容仅限于xxx有限公司内部传阅,禁止外泄以及用于其他的商业项目
  * @ Copyright  xxx. All rights reserved.
  **/
-public class GeneratorCommonIO {
+public class GeneratorService {
 
     public static void main(String[] args) {
 
@@ -47,7 +39,7 @@ public class GeneratorCommonIO {
         gc.setDateType(DateType.TIME_PACK); // 时间策略 默认TIME_PACK
         gc.setBaseColumnList(true); //默认false  和basemodel相似
 //        gc.setEntityName("%sIO");
-        gc.setControllerName("%sIO");
+        gc.setControllerName("%sService");
 //        gc.setServiceName("%sService");
 //        gc.setServiceImplName("%sServiceImpl");
 //        gc.setMapperName("%sMapper");
@@ -68,7 +60,7 @@ public class GeneratorCommonIO {
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setParent("com.yss.cn.api.io");
+        pc.setParent("com.yss.cn.api.service");
         pc.setController("%s");
 //        pc.setModuleName("%s"); //此处是所属模块名称
 //        pc.setEntity("$s"); //默认entity,controller,service,service.impl,mapper,mapper.xml
@@ -107,7 +99,7 @@ public class GeneratorCommonIO {
         tc.setService("");
         tc.setMapper("");
         tc.setXml("");
-        tc.setController("templates/io.java");// /templates/entity.java 模板路径配置，默认再templates
+        tc.setController("templates/service.java");// /templates/entity.java 模板路径配置，默认再templates
 //        tc.setService("templates/service.java");
 //        tc.setServiceImpl("templates/serviceImpl.java");
 //        tc.setMapper("templates/mapper.java");

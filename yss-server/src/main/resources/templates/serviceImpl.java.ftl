@@ -1,28 +1,28 @@
-package ${package.ServiceImpl};
+package com.yss.cn.provider.${table.entityPath};
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import com.yss.results.*;
+import com.yss.cn.results.*;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.yss.cn.modules.service.${table.serviceName};
-import com.yss.cn.modules.mapper.${table.mapperName};
-import com.yss.common.utils.*;
-import com.yss.io.*;
-import com.yss.module.result.${table.entityPath}.${table.entityName}Result;
-import com.yss.module.io.${table.entityPath}.${table.entityName}IO;
+import com.yss.cn.api.service.${table.entityPath}.${table.entityName}Service;
+import com.yss.cn.persistence.dao.${entity}Mapper;
+import com.yss.cn.common.utils.*;
+import com.yss.cn.io.*;
+import com.yss.cn.api.result.${table.entityPath}.${table.entityName}Result;
+import com.yss.cn.api.io.${table.entityPath}.${table.entityName}IO;
 import java.util.List;
-import com.yss.cn.modules.entity.${table.entityName};
+import com.yss.cn.persistence.entity.${entity};
 
 /**
- * $!{table.comment} 服务实现类
+ * ${table.comment!}服务实现类
  * @author ${author}
  * @since ${date}
  */
 @Service
 @Transactional
-public class ${table.serviceImplName} implements ${table.serviceName} {
+public class ${table.serviceImplName} implements ${table.entityName}Service {
 
     @Autowired
     private ${table.mapperName} ${table.entityPath}Mapper;
@@ -36,19 +36,19 @@ public class ${table.serviceImplName} implements ${table.serviceName} {
 
     @Override
     public ${table.entityName}Result find${table.entityName}ResultById(Integer id){
-        return BeanUtil.cast(${table.entityPath}Mapper.selectById(id), ${table.entityName}Result.class);
+        return BeanUtil.mapToBean(${table.entityPath}Mapper.selectById(id), ${table.entityName}Result.class);
     }
 
     @Override
     public void save${table.entityName}(${table.entityName}IO io){
-        ${table.entityName} entity = BeanUtil.cast(io, ${table.entityName}.class);
+        ${table.entityName} entity = BeanUtil.mapToBean(io, ${table.entityName}.class);
         //  TODO 补充set
         ${table.entityPath}Mapper.insert(entity);
     }
 
     @Override
     public void update${table.entityName}(${table.entityName}IO io) {
-        ${table.entityName} entity = BeanUtil.cast(io, ${table.entityName}.class);
+        ${table.entityName} entity = BeanUtil.mapToBean(io, ${table.entityName}.class);
         //  TODO 补充set
         ${table.entityPath}Mapper.updateById(entity);
     }

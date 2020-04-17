@@ -14,22 +14,19 @@ import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author Shuoshi.Yan
  * @package:com.plus.yss
- * @className:
+ * @className:自动生成模板配置
  * @description:
  * @date 2019-12-11 15:19
  * @version:V1.0
  * @NOTICE：本内容仅限于xxx有限公司内部传阅,禁止外泄以及用于其他的商业项目
  * @ Copyright  xxx. All rights reserved.
  **/
-public class GeneratorCommonIO {
-
+public class GeneratorController {
     public static void main(String[] args) {
 
         AutoGenerator generator = new AutoGenerator();
@@ -37,7 +34,8 @@ public class GeneratorCommonIO {
         // 全局变量配置
         GlobalConfig gc = new GlobalConfig();
         String projectPath = System.getProperty("user.dir"); //当前项目
-        gc.setOutputDir(projectPath+"/yss-common/src/main/java"); // 输出路径
+        gc.setOutputDir(projectPath + "/yss-server/src/main/java"); // 输出路径
+        System.out.println("路径：" + projectPath + "/yss-server/src/main/java");
         gc.setFileOverride(false); // 默认 false ,是否覆盖已生成文件
         gc.setOpen(false); //默认true ,是否打开输出目录
         gc.setEnableCache(false); // 默认false,是否开启二级缓存
@@ -46,8 +44,8 @@ public class GeneratorCommonIO {
         gc.setBaseResultMap(true); // 默认false
         gc.setDateType(DateType.TIME_PACK); // 时间策略 默认TIME_PACK
         gc.setBaseColumnList(true); //默认false  和basemodel相似
-//        gc.setEntityName("%sIO");
-        gc.setControllerName("%sIO");
+//        gc.setEntityName("%s");
+        gc.setControllerName("%sController");
 //        gc.setServiceName("%sService");
 //        gc.setServiceImplName("%sServiceImpl");
 //        gc.setMapperName("%sMapper");
@@ -68,17 +66,16 @@ public class GeneratorCommonIO {
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setParent("com.yss.cn.api.io");
-        pc.setController("%s");
-//        pc.setModuleName("%s"); //此处是所属模块名称
-//        pc.setEntity("$s"); //默认entity,controller,service,service.impl,mapper,mapper.xml
+        pc.setParent("com.yss.cn.controller");
+        pc.setController("%s");//注意，此处使用%s会生成一个%s包，删除即可；使用目的是生成表对应的包名,生成后需修改首字母小写
+//        pc.setModuleName("modules"); //此处是所属模块名称
+//        pc.setEntity("entity"); //默认entity,controller,service,service.impl,mapper,mapper.xml
         generator.setPackageInfo(pc);
         // 自定义配置
 //        InjectionConfig cfg = new InjectionConfig() {
 //            @Override
 //            public void initMap() {
 //                // to do nothing
-//                Map map = new HashMap();
 //            }
 //        };
         /**
@@ -92,7 +89,7 @@ public class GeneratorCommonIO {
 //            @Override
 //            public String outputFile(TableInfo tableInfo) {
 //                // 自定义输出文件名 ， 如果你 Entity 设置了前后缀、此处注意 xml 的名称会跟着发生变化！！
-//                return projectPath + "/yss-common/src/main/resources/mapper/"
+//                return projectPath + "/yss-server/src/main/resources/mapper/"
 ////                        + pc.getModuleName()
 //                        + "/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
 //            }
@@ -102,20 +99,14 @@ public class GeneratorCommonIO {
 
         // 配置模板
         TemplateConfig tc = new TemplateConfig();
-//        tc.setController("");
+        tc.setController("templates/controller.java");// /templates/entity.java 模板路径配置，默认再templates
+        tc.setService("");//注意点，TemplageConfig 有默认的模板，若想不使用默认的模板或者不想生成对应的代码，将其设置为空就可以了
         tc.setServiceImpl("");
-        tc.setService("");
         tc.setMapper("");
         tc.setXml("");
-        tc.setController("templates/io.java");// /templates/entity.java 模板路径配置，默认再templates
-//        tc.setService("templates/service.java");
-//        tc.setServiceImpl("templates/serviceImpl.java");
-//        tc.setMapper("templates/mapper.java");
-//        tc.setXml("templates/mapper.xml");
         tc.setEntity("");
-
 //        tc.setEntityKt("");
-    generator.setTemplate(tc);
+        generator.setTemplate(tc);
 
         // 数据库表配置
         StrategyConfig sc = new StrategyConfig();
@@ -127,7 +118,8 @@ public class GeneratorCommonIO {
         sc.setRestControllerStyle(true); // 默认false
         sc.setEntitySerialVersionUID(true); //默认true
         sc.setEntityColumnConstant(true); //默认false
-        sc.setInclude("yss_account"); //表名，用，隔开  需要生产
+        String [] tables = {"yss_account"};//表配置；注意，需生成多个表用数组储存
+        sc.setInclude(tables);
         //     sc.setExclude(""); //                 不需要生成  二选一
         sc.setEntityTableFieldAnnotationEnable(true); // 默认false 注释
         sc.setControllerMappingHyphenStyle(false); //默认false
@@ -139,3 +131,4 @@ public class GeneratorCommonIO {
         generator.execute();
     }
 }
+//io - result - dao - entity - mapper - xml - serviceimpl - service - controller

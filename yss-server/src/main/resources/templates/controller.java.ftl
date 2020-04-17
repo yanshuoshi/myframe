@@ -1,6 +1,6 @@
-package ${package.Controller};
+package com.yss.cn.controller.${table.entityPath};
 
-
+import com.yss.cn.io.*;
 import org.springframework.web.bind.annotation.*;
 import org.apache.commons.lang3.math.NumberUtils;
 <#if restControllerStyle>
@@ -8,24 +8,18 @@ import org.springframework.web.bind.annotation.RestController;
 <#else>
 import org.springframework.stereotype.Controller;
 </#if>
-import com.yss.io.PageListIO;
+import com.yss.cn.io.PageListIO;
+import com.yss.cn.results.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.*;
-import lombok.extern.slf4j.Slf4j;
 import javax.validation.Valid;
-import com.yss.results.*;
-import com.yss.io.*;
 import org.apache.commons.collections.CollectionUtils;
-import com.yss.module.result.${table.entityPath}.*;
-import com.yss.module.io.${table.entityPath}.*;
-import ${package.Service}.${table.serviceName};
-<#if superControllerClassPackage??>
-import ${superControllerClassPackage};
-</#if>
+import com.yss.cn.api.service.${table.entityPath}.${table.entityName}Service;
+import com.yss.cn.api.result.${table.entityPath}.${table.entityName}Result;
+import com.yss.cn.api.io.${table.entityPath}.${table.entityName}IO;
 
 /**
-* ${table.comment!} 前端控制器
+* ${table.comment!} 控制器
 * @author ${author}
 * @since ${date}
 */
@@ -35,7 +29,7 @@ import ${superControllerClassPackage};
 @Controller
 </#if>
 @Api(value = "[后台]${table.controllerName}",description = "${table.controllerName}")
-@RequestMapping("<#if package.ModuleName??>/${package.ModuleName}</#if>/<#if controllerMappingHyphenStyle??>${controllerMappingHyphen}<#else>${table.entityPath}</#if>")
+@RequestMapping("/pc<#if package.ModuleName??>/${package.ModuleName}</#if>/<#if controllerMappingHyphenStyle??>${controllerMappingHyphen}<#else>${table.entityPath}</#if>")
 <#if kotlin>
 class ${table.controllerName}<#if superControllerClass??> : ${superControllerClass}()</#if>
 <#else>
@@ -46,11 +40,11 @@ public class ${table.controllerName} {
     </#if>
 
     @Autowired
-    private ${table.serviceName} ${table.entityPath}Service;
+    private ${table.entityName}Service ${table.entityPath}Service;
 
-    @ApiOperation(value = "${table.entityPath}列表",notes="${table.entityPath}列表",response = ${table.entityName}ListResult.class)
+    @ApiOperation(value = "${table.entityPath}列表",notes="${table.entityPath}列表",response = ${table.entityName}Result.class)
     @PostMapping("/${table.entityPath}List")
-    public ApiResult ${table.entityPath}List(@Valid @ApiParam(required = true) @RequestBody PageListIO<${table.entityName}ListFromIO> body) {
+    public ApiResult ${table.entityPath}List(@Valid @ApiParam(required = true) @RequestBody PageListIO<${table.entityName}IO> body) {
         FormListResult<${table.entityName}Result> result = ${table.entityPath}Service.query${table.entityName}PageList(body);
         return ApiResult.success(result);
     }
