@@ -6,6 +6,9 @@ import com.yss.cn.api.io.pc.tBaseAuth.TBaseAuthListFromIO;
 import com.yss.cn.api.result.pc.tBaseAuth.TBaseAuthListResult;
 import com.yss.cn.api.result.pc.tBaseAuth.TBaseAuthResult;
 import com.yss.cn.api.service.pc.tBaseAuth.TBaseAuthService;
+import com.yss.cn.auth.AuthToken;
+import com.yss.cn.auth.Authorization;
+import com.yss.cn.common.auth.TokenResult;
 import com.yss.cn.io.PageListIO;
 import com.yss.cn.io.SimpleIO;
 import com.yss.cn.io.SimpleListIO;
@@ -23,14 +26,14 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 /**
-* 授权管理-授权表 前端控制器
-* @author ShuoShi Yan
-* @since 2019-12-23
-*/
+ * 授权管理-授权表 前端控制器
+ * @author ShuoShi Yan
+ * @since 2019-12-23
+ */
+@Api(value = "[后台]TBaseAuthController",description = "[后台]TBaseAuthController")
 @RestController
 @Slf4j
-@Api(value = "[后台]TBaseAuthController",description = "TBaseAuthController")
-@RequestMapping("/tBaseAuth")
+@RequestMapping("/pc/tBaseAuth")
 public class TBaseAuthController {
 
     @Autowired
@@ -38,7 +41,8 @@ public class TBaseAuthController {
 
     @ApiOperation(value = "tBaseAuth列表",notes="tBaseAuth列表",response = TBaseAuthListResult.class)
     @PostMapping("/tBaseAuthList")
-    public ApiResult tBaseAuthList(@Valid @ApiParam(required = true) @RequestBody PageListIO<TBaseAuthListFromIO> body) {
+    @Authorization
+    public ApiResult tBaseAuthList(@AuthToken TokenResult authToken, @Valid @ApiParam(required = true) @RequestBody PageListIO<TBaseAuthListFromIO> body) {
         FormListResult<TBaseAuthResult> result = tBaseAuthService.queryTBaseAuthPageList(body);
         return ApiResult.success(result);
     }
@@ -73,3 +77,5 @@ public class TBaseAuthController {
         return ApiResult.success();
     }
 }
+
+

@@ -17,7 +17,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * $!{table.comment} 服务实现类
+ *  服务实现类
  * @author ShuoShi Yan
  * @since 2019-12-23
  */

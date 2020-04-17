@@ -13,7 +13,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 /**
  * @author Shuoshi.Yan
  * @package:com.plus.yss
- * @className:
+ * @className:Swagger2Config
  * @description:
  * @date 2019-12-11 15:19
  * @version:V1.0
@@ -30,7 +30,7 @@ public class Swagger2Config {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.yss.cn.modules.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.yss.cn.api.app.tBaseAuth.Controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
