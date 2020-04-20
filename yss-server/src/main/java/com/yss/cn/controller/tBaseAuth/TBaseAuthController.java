@@ -39,7 +39,7 @@ public class TBaseAuthController {
 
     @ApiOperation(value = "tBaseAuth列表",notes="tBaseAuth列表",response = TBaseAuthListResult.class)
     @PostMapping("/tBaseAuthList")
-    @Authorization
+//    @Authorization
     public ApiResult tBaseAuthList(@AuthToken TokenResult authToken, @Valid @ApiParam(required = true) @RequestBody PageListIO<TBaseAuthListFromIO> body) {
         FormListResult<TBaseAuthResult> result = tBaseAuthService.queryTBaseAuthPageList(body);
         return ApiResult.success(result);

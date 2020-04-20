@@ -28,7 +28,7 @@ public class YssAccountController {
     private YssAccountService yssAccountService;
 
     @ApiOperation(value = "yssAccount列表",notes="yssAccount列表",response = YssAccountResult.class)
-    @PostMapping("/yssAccountList")
+    @PostMapping("/queryYssAccountList")
     public ApiResult yssAccountList(@Valid @ApiParam(required = true) @RequestBody PageListIO<YssAccountIO> body) {
         FormListResult<YssAccountResult> result = yssAccountService.queryYssAccountPageList(body);
         return ApiResult.success(result);

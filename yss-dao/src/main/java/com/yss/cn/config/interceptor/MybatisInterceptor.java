@@ -12,6 +12,7 @@ import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.type.TypeHandlerRegistry;
+import org.springframework.stereotype.Component;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -29,9 +30,11 @@ import java.util.regex.Matcher;
  * @NOTICE：本内容仅限于xxx有限公司内部传阅,禁止外泄以及用于其他的商业项目
  * @ Copyright  xxx. All rights reserved.
  **/
+@Component
 @Slf4j
 @Intercepts({ @Signature(type = Executor.class, method = "update", args = { MappedStatement.class, Object.class }),
-        @Signature(type = Executor.class, method = "query", args = { MappedStatement.class, Object.class,RowBounds.class, ResultHandler.class }) })
+         @Signature(type = Executor.class, method = "query", args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class })
+})
 public class MybatisInterceptor implements Interceptor {
 
 
