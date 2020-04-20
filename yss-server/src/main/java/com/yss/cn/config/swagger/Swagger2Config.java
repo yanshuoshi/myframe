@@ -1,7 +1,9 @@
 package com.yss.cn.config.swagger;
 
+import com.yss.cn.auth.AuthToken;
 import org.apache.commons.lang3.ClassUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -33,6 +35,7 @@ import java.util.Set;
 
 @Configuration
 @EnableSwagger2
+@ConditionalOnProperty(name = "enable", prefix = "swagger", havingValue = "true", matchIfMissing = true)
 public class Swagger2Config {
     @Bean
     public Docket createRestApi(){
@@ -49,7 +52,8 @@ public class Swagger2Config {
                 .select()
                 .apis(RequestHandlerSelectors.basePackage(packageString))
                 .paths(PathSelectors.any())
-                .build();
+                .build()
+                .globalOperationParameters(parameterList).ignoredParameterTypes(AuthToken.class).consumes(consumesSet).produces(consumesSet);
     }
 
     private ApiInfo apiInfo(){

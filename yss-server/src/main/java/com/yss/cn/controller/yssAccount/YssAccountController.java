@@ -1,5 +1,6 @@
 package com.yss.cn.controller.yssAccount;
 
+import com.yss.cn.api.io.yssAccount.YssAccountIO;
 import com.yss.cn.io.*;
 import org.springframework.web.bind.annotation.*;
 import org.apache.commons.lang3.math.NumberUtils;
@@ -12,16 +13,16 @@ import javax.validation.Valid;
 import org.apache.commons.collections.CollectionUtils;
 import com.yss.cn.api.service.yssAccount.YssAccountService;
 import com.yss.cn.api.result.yssAccount.YssAccountResult;
-import com.yss.cn.api.io.yssAccount.YssAccountIO;
+import com.yss.cn.api.io.yssAccount.YssAccountListFromIO;
 
 /**
 * 系统用户信息 控制器
 * @author ShuoShi Yan
-* @since 2020-04-17
+* @since 2020-04-20
 */
 @RestController
 @Api(value = "[后台]YssAccountController",description = "YssAccountController")
-@RequestMapping("/yssAccount")
+@RequestMapping("/pc/yssAccount")
 public class YssAccountController {
 
     @Autowired
@@ -29,7 +30,7 @@ public class YssAccountController {
 
     @ApiOperation(value = "yssAccount列表",notes="yssAccount列表",response = YssAccountResult.class)
     @PostMapping("/yssAccountList")
-    public ApiResult yssAccountList(@Valid @ApiParam(required = true) @RequestBody PageListIO<YssAccountIO> body) {
+    public ApiResult yssAccountList(@Valid @ApiParam(required = true) @RequestBody PageListIO<YssAccountListFromIO> body) {
         FormListResult<YssAccountResult> result = yssAccountService.queryYssAccountPageList(body);
         return ApiResult.success(result);
     }

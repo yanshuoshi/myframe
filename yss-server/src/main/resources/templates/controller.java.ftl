@@ -16,7 +16,7 @@ import javax.validation.Valid;
 import org.apache.commons.collections.CollectionUtils;
 import com.yss.cn.api.service.${table.entityPath}.${table.entityName}Service;
 import com.yss.cn.api.result.${table.entityPath}.${table.entityName}Result;
-import com.yss.cn.api.io.${table.entityPath}.${table.entityName}IO;
+import com.yss.cn.api.io.${table.entityPath}.${table.entityName}ListFromIO;
 
 /**
 * ${table.comment!} 控制器
@@ -44,7 +44,7 @@ public class ${table.controllerName} {
 
     @ApiOperation(value = "${table.entityPath}列表",notes="${table.entityPath}列表",response = ${table.entityName}Result.class)
     @PostMapping("/${table.entityPath}List")
-    public ApiResult ${table.entityPath}List(@Valid @ApiParam(required = true) @RequestBody PageListIO<${table.entityName}IO> body) {
+    public ApiResult ${table.entityPath}List(@Valid @ApiParam(required = true) @RequestBody PageListIO<${table.entityName}ListFromIO> body) {
         FormListResult<${table.entityName}Result> result = ${table.entityPath}Service.query${table.entityName}PageList(body);
         return ApiResult.success(result);
     }
