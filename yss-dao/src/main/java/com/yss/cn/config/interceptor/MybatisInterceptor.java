@@ -2,6 +2,7 @@ package com.yss.cn.config.interceptor;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.ibatis.cache.CacheKey;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;
@@ -20,6 +21,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.regex.Matcher;
+
 /**
  * @author Shuoshi.Yan
  * @package:com.yss.config.interceptor
@@ -32,9 +34,11 @@ import java.util.regex.Matcher;
  **/
 @Component
 @Slf4j
-@Intercepts({ @Signature(type = Executor.class, method = "update", args = { MappedStatement.class, Object.class }),
-         @Signature(type = Executor.class, method = "query", args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class })
-})
+@Intercepts({
+        @Signature(type = Executor.class, method = "update", args = {
+                MappedStatement.class, Object.class}),
+        @Signature(type = Executor.class, method = "query", args = {
+                MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class, CacheKey.class, BoundSql.class})})
 public class MybatisInterceptor implements Interceptor {
 
 
@@ -54,7 +58,7 @@ public class MybatisInterceptor implements Interceptor {
             Configuration configuration = mappedStatement.getConfiguration();
             String sql = getSql(configuration, boundSql, sqlId, 0);
             log.info(">>>>>>>>>>>>>");
-            log.info(">>>"+sql);
+            log.info(">>>" + sql);
             log.info(">>>>>>>>>>>>>");
         } catch (Exception e) {
             e.printStackTrace();
@@ -77,7 +81,7 @@ public class MybatisInterceptor implements Interceptor {
             value = "'" + obj.toString() + "'";
         } else if (obj instanceof Date) {
             DateFormat formatter = DateFormat.getDateTimeInstance(DateFormat.DEFAULT, DateFormat.DEFAULT, Locale.CHINA);
-            value ="'" + formatter.format(new Date()) + "'";
+            value = "'" + formatter.format(new Date()) + "'";
         } else {
             if (obj != null) {
                 value = obj.toString();

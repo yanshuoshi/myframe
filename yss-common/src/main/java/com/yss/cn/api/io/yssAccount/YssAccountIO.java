@@ -2,8 +2,6 @@ package com.yss.cn.api.io.yssAccount;
 
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.*;
@@ -43,4 +41,6 @@ public class YssAccountIO implements Serializable {
 
     @ApiModelProperty(value = "状态 0/禁用,1/启用")
     private String state;
+    @ApiModelProperty(value = "时间段查询")
+    private String[] updateTimeRange;
 }

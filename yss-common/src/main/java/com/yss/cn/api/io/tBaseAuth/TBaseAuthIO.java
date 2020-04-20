@@ -5,8 +5,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -16,8 +14,6 @@ import java.util.Date;
  * @since 2019-12-23
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
-@Accessors(chain = true)
 @ApiModel(value = "TBaseAuthIO", description = "TBaseAuthIO描述")
 public class TBaseAuthIO implements Serializable {
 
