@@ -39,6 +39,7 @@ import java.util.Set;
 public class Swagger2Config {
     @Bean
     public Docket createRestApi(){
+        //
         String packageString = StringUtils.removeEnd(ClassUtils.getPackageName(Swagger2Config.class), ".config.swagger") + "";
         ParameterBuilder tokenParameterBuilder = new ParameterBuilder();
         List<Parameter> parameterList = new ArrayList<Parameter>();

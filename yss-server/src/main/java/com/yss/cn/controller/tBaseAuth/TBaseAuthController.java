@@ -31,7 +31,7 @@ import javax.validation.Valid;
 @Api(value = "[后台]TBaseAuthController",description = "[后台]TBaseAuthController")
 @RestController
 @Slf4j
-@RequestMapping("//tBaseAuth")
+@RequestMapping("/tBaseAuth")
 public class TBaseAuthController {
 
     @Autowired

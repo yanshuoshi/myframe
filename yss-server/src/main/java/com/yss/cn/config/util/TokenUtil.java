@@ -19,6 +19,11 @@ import org.springframework.stereotype.Repository;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author:Shuoshi.Yan
+ * @description: token
+ * @date: 2020/4/21 14:31
+ */
 @Repository
 public class TokenUtil {
 
@@ -27,13 +32,13 @@ public class TokenUtil {
     private JWTVerifier verifier;
 
     @Autowired
-    @Qualifier("redisTemplate")
+//    @Qualifier("redisTemplate")
     private RedisTemplate redisTemplate;
 
-    private static String kTokenKey = "stla";
+    private static String kTokenKey = "yss";
 
-    public TokenResult createToken(Integer userId, String userUuid, String userName, Integer userOrganizationId, String userOrganizationCode, String userOrganizationName) {
-        return createToken(Constants.kPrefix_PC, userId, userUuid, userName, userOrganizationId, userOrganizationCode, userOrganizationName);
+    public TokenResult createToken(Integer userId, String userUuid, String userName) {
+        return createToken(Constants.kPrefix_PC, userId, userUuid, userName);
     }
 
     public TokenResult getToken(String token) {
@@ -48,12 +53,14 @@ public class TokenUtil {
         redisTemplate.delete(userUuid);
     }
 
-    public TokenResult createToken(String prefix, Integer userId, String userUuid, String userName, Integer userOrganizationId, String userOrganizationCode, String userOrganizationName) {
+    public TokenResult createToken(String prefix, Integer userId, String userUuid, String userName) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(Constants.kToken_Secret);
             String token = JWT.create().withExpiresAt(DateUtils.addDays(new Date(), (int) Constants.TOKEN_EXPIRES_DAY)).withClaim("uid", userUuid).withClaim("createTime", new Date()).sign(algorithm);
             TokenResult result = new TokenResult(userId, userUuid, token);
             result.setUserName(userName);
+            result.setUserId(userId);
+            result.setUserUuid(userUuid);
             redisTemplate.boundValueOps(kTokenKey + ":" + prefix + ":" + userUuid).set(result, Constants.TOKEN_EXPIRES_DAY, TimeUnit.DAYS);
             return result;
         } catch (Exception exception) {
@@ -80,6 +87,4 @@ public class TokenUtil {
             return null;
         }
     }
-
-
 }
