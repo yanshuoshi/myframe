@@ -35,9 +35,9 @@
       <module name="demo" options="-parameters" />
       <module name="server1" options="-parameters" />
       <module name="yss" options="-parameters" />
-      <module name="yss-common" options="-parameters" />
-      <module name="yss-dao" options="-parameters" />
-      <module name="yss-server" options="-parameters" />
+      <module name="yss-common" options="" />
+      <module name="yss-dao" options="" />
+      <module name="yss-server" options="" />
       <module name="yss-server1" options="-parameters" />
     </option>
   </component>
