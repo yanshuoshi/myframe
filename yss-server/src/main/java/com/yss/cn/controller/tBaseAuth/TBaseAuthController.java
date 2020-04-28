@@ -6,6 +6,7 @@ import com.yss.cn.api.result.tBaseAuth.TBaseAuthResult;
 import com.yss.cn.api.service.tBaseAuth.TBaseAuthService;
 import com.yss.cn.auth.AuthToken;
 import com.yss.cn.auth.Authorization;
+import com.yss.cn.bean.BaseController;
 import com.yss.cn.common.auth.TokenResult;
 import com.yss.cn.io.PageListIO;
 import com.yss.cn.io.SimpleIO;
@@ -31,8 +32,8 @@ import javax.validation.Valid;
 @Api(value = "[后台]TBaseAuthController",description = "[后台]TBaseAuthController")
 @RestController
 @Slf4j
-@RequestMapping("/tBaseAuth")
-public class TBaseAuthController {
+@RequestMapping("/pc/tBaseAuth")
+public class TBaseAuthController  extends BaseController {
 
     @Autowired
     private TBaseAuthService tBaseAuthService;

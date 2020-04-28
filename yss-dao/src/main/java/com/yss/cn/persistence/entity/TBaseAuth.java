@@ -3,9 +3,9 @@ package com.yss.cn.persistence.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -15,7 +15,7 @@ import java.util.Date;
  * @since 2019-12-23
  */
 @Data
-@TableName("t_base_auth")
+@Table(name = "t_base_auth")
 public class TBaseAuth implements Serializable {
 
     private static final long serialVersionUID = 1L;

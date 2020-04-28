@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
@@ -24,7 +25,7 @@ import java.util.concurrent.TimeUnit;
  * @description: token
  * @date: 2020/4/21 14:31
  */
-@Repository
+@Component
 public class TokenUtil {
 
     private final Logger logger = LoggerFactory.getLogger(TokenUtil.class);

@@ -23,8 +23,10 @@ public class YssAccountIO implements Serializable {
     private String userName;
     @ApiModelProperty(value = "姓名")
     private String realName;
-    @ApiModelProperty(value = "密码")
+    @ApiModelProperty(value = "新密码")
     private String password;
+    @ApiModelProperty(value = "确认密码")
+    private String confirmPassword;
     @ApiModelProperty(value = "联系电话")
     private String mobile;
     @ApiModelProperty(value = "备注")

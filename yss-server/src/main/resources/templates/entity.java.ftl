@@ -4,6 +4,10 @@ import com.baomidou.mybatisplus.annotation.*;
 import java.util.Date;
 import java.io.Serializable;
 import lombok.Data;
+import javax.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 /**
  * ${table.comment}
  * @author ${author}
@@ -12,7 +16,7 @@ import lombok.Data;
 <#if entityLombokModel>
 </#if>
 <#if table.convert>
-@TableName("${table.name}")
+@Table("${table.name}")
 </#if>
 <#if superEntityClass??>
 @Data
@@ -40,22 +44,25 @@ public class ${entity} implements Serializable {
 <#if field.keyFlag>
 <#-- 主键 -->
 <#if field.keyIdentityFlag>
-    @TableId(value = "${field.name}", type = IdType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 <#elseif idType??>
-    @TableId(value = "${field.name}", type = IdType.${idType})
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 <#elseif field.convert>
-    @TableId("${field.name}")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 </#if>
 <#-- 普通字段 -->
 <#elseif field.fill??>
 <#-- -----   存在字段填充设置   ----->
 <#if field.convert>
-    @TableField(value = "${field.name}", fill = FieldFill.${field.fill})
+    @Column(value = "${field.name}", fill = FieldFill.${field.fill})
 <#else>
-    @TableField(fill = FieldFill.${field.fill})
+    @Column(fill = FieldFill.${field.fill})
 </#if>
 <#elseif field.convert>
-    @TableField("${field.name}")
+    @Column(name = "${field.name}")
 </#if>
 <#-- 乐观锁注解 -->
 <#if (versionFieldName!"") == field.name>

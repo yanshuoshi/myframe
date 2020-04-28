@@ -13,6 +13,7 @@ import com.yss.cn.results.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import io.swagger.annotations.*;
 import javax.validation.Valid;
+import com.yss.cn.bean.BaseController;
 import org.apache.commons.collections.CollectionUtils;
 import com.yss.cn.api.service.${table.entityPath}.${table.entityName}Service;
 import com.yss.cn.api.result.${table.entityPath}.${table.entityName}Result;
@@ -36,7 +37,7 @@ class ${table.controllerName}<#if superControllerClass??> : ${superControllerCla
     <#if superControllerClass??>
 public class ${table.controllerName} extends ${superControllerClass} {
     <#else>
-public class ${table.controllerName} {
+public class ${table.controllerName}  extends BaseController{
     </#if>
 
     @Autowired

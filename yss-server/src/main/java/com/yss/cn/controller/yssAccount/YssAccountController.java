@@ -1,6 +1,10 @@
 package com.yss.cn.controller.yssAccount;
 
+import com.yss.cn.api.io.yssAccount.AuthLoginIO;
 import com.yss.cn.api.io.yssAccount.YssAccountIO;
+import com.yss.cn.api.result.yssAccount.AuthLoginResult;
+import com.yss.cn.bean.BaseController;
+import com.yss.cn.common.utils.NetworkUtil;
 import com.yss.cn.io.*;
 import org.springframework.web.bind.annotation.*;
 import org.apache.commons.lang3.math.NumberUtils;
@@ -23,11 +27,17 @@ import com.yss.cn.api.io.yssAccount.YssAccountListFromIO;
 @RestController
 @Api(value = "[后台]YssAccountController",description = "YssAccountController")
 @RequestMapping("/pc/yssAccount")
-public class YssAccountController {
+public class YssAccountController extends BaseController {
 
     @Autowired
     private YssAccountService yssAccountService;
 
+    @ApiOperation(value = "用户名密码登录", notes = "使用用户密码进行登录", response = AuthLoginResult.class)
+    @PostMapping("/login")
+    public ApiResult userSecretLogin(@ApiParam(required = true) @Valid @RequestBody AuthLoginIO body) {
+        AuthLoginResult result = yssAccountService.userSecretLogin(body.getUserName(), body.getPassword(), NetworkUtil.getIpAddress(request));
+        return ApiResult.success(result);
+    }
     @ApiOperation(value = "yssAccount列表",notes="yssAccount列表",response = YssAccountResult.class)
     @PostMapping("/yssAccountList")
     public ApiResult yssAccountList(@Valid @ApiParam(required = true) @RequestBody PageListIO<YssAccountListFromIO> body) {
@@ -42,7 +52,7 @@ public class YssAccountController {
         return ApiResult.success(result);
     }
 
-    @ApiOperation(value = "新增yssAccount",notes="新增yssAccount",response = ApiResult.class)
+    @ApiOperation(value = "新增用户",notes="新增用户",response = ApiResult.class)
     @PostMapping("/yssAccountAdd")
     public ApiResult yssAccountAdd(@ApiParam(required = true) @Valid @RequestBody YssAccountIO body) {
         yssAccountService.saveYssAccount(body);

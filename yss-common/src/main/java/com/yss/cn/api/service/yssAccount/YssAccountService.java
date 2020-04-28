@@ -1,6 +1,7 @@
 package com.yss.cn.api.service.yssAccount;
 
 import com.yss.cn.api.io.yssAccount.YssAccountIO;
+import com.yss.cn.api.result.yssAccount.AuthLoginResult;
 import com.yss.cn.api.result.yssAccount.YssAccountResult;
 import com.yss.cn.results.*;
 import com.yss.cn.io.*;
@@ -26,6 +27,9 @@ public interface YssAccountService {
 
     //删除 根据列表id进行循环逻辑删除
     void deleteYssAccountListByListId(List<Integer> idList);
+
+    //账号密码登陆
+    AuthLoginResult userSecretLogin(String username, String password, String ip);
 
 }
 

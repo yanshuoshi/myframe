@@ -35,7 +35,7 @@ public class BeanUtil {
      * @param: 
      * @return: 
      */
-    public static <T> T mapToBean(Object source, Class<T> targetClass) {
+    public static <T> T changeBean(Object source, Class<T> targetClass) {
         T result = mapper.map(source, targetClass);
         return result;
     }
@@ -81,6 +81,6 @@ public class BeanUtil {
         System.out.println("beanToMap" + BeanUtil.beanToMap(tBaseAuthIO));
         Map map = new HashMap();
         map.put("authId","1");
-        System.out.println("MapToBean" + BeanUtil.mapToBean(map,TBaseAuthIO.class));
+        System.out.println("MapToBean" + BeanUtil.changeBean(map,TBaseAuthIO.class));
     }
 }

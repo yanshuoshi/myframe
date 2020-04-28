@@ -36,19 +36,19 @@ public class ${table.serviceImplName} implements ${table.entityName}Service {
 
     @Override
     public ${table.entityName}Result find${table.entityName}ResultById(Integer id){
-        return BeanUtil.mapToBean(${table.entityPath}Mapper.selectById(id), ${table.entityName}Result.class);
+        return BeanUtil.changeBean(${table.entityPath}Mapper.selectById(id), ${table.entityName}Result.class);
     }
 
     @Override
     public void save${table.entityName}(${table.entityName}IO io){
-        ${table.entityName} entity = BeanUtil.mapToBean(io, ${table.entityName}.class);
+        ${table.entityName} entity = BeanUtil.changeBean(io, ${table.entityName}.class);
         //  TODO 补充set
         ${table.entityPath}Mapper.insert(entity);
     }
 
     @Override
     public void update${table.entityName}(${table.entityName}IO io) {
-        ${table.entityName} entity = BeanUtil.mapToBean(io, ${table.entityName}.class);
+        ${table.entityName} entity = BeanUtil.changeBean(io, ${table.entityName}.class);
         //  TODO 补充set
         ${table.entityPath}Mapper.updateById(entity);
     }
