@@ -1,7 +1,7 @@
 # myframe
 
 ## 特别注意
-
+1. mybatisplus 查询时必须使用resultMap指定返回对象
 
 ## 工程模块描述
 
