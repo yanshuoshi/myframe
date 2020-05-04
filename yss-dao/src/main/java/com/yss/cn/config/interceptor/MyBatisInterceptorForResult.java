@@ -22,21 +22,18 @@ import org.springframework.stereotype.Component;
 @Component
 @Intercepts({@Signature(type = Executor.class, method = "query", args = {
         MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class, CacheKey.class, BoundSql.class})})
-public class MyBatisInterceptorForResult implements Interceptor
-{
+public class MyBatisInterceptorForResult implements Interceptor{
 
     @SuppressWarnings({"rawtypes", "unchecked"})
     public Object intercept(Invocation invocation)
-            throws Throwable
-    {
+            throws Throwable{
         Object result = invocation.proceed(); // 执行请求方法，并将所得结果保存到result中
         String str = JSON.toJSONString(result);
         System.out.println(str);
         return result;
     }
 
-    public Object plugin(Object target)
-    {
+    public Object plugin(Object target){
         return Plugin.wrap(target, this);
     }
 

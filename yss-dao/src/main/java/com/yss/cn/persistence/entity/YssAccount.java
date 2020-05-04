@@ -1,46 +1,48 @@
 package com.yss.cn.persistence.entity;
 
-import com.baomidou.mybatisplus.annotation.*;
 import java.util.Date;
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import javax.persistence.*;
+
+import static com.baomidou.mybatisplus.annotation.IdType.AUTO;
 
 /**
  * 系统用户信息
  * @author ShuoShi Yan
  * @since 2020-04-17
  */
-@Table(name = "yss_account")
+@TableName(value = "yss_account")
 @Data
 public class YssAccount implements Serializable {
-
-    private static final long serialVersionUID = 1L;
 
     /**
      * 主键ID
      */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @TableId(value = "id",type = AUTO)
     private Integer id;
 
     /**
      * 角色ID
      */
-    @Column(name = "role_id")
+    @TableField("role_id")
     private Integer roleId;
 
     /**
      * 用户名
      */
-    @Column(name = "user_name")
+    @TableField("user_name")
     private String userName;
 
     /**
      * 姓名
      */
-    @Column(name = "real_name")
+    @TableField("real_name")
     private String realName;
 
     /**
@@ -61,28 +63,26 @@ public class YssAccount implements Serializable {
     /**
      * 是否删除 0/未删除,1/已删除
      */
-    @Column(name = "is_delete")
+    @TableField("is_delete")
     private Integer isDelete;
 
     /**
      * 修改时间
      */
-    @Column(name = "update_time")
+    @TableField("update_time")
     private Date updateTime;
 
 
     /**
      * 创建时间
      */
-    @Column(name = "create_time")
+    @TableField("create_time")
     private Date createTime;
 
 
     /**
      * 状态 0/禁用,1/启用
      */
-    @Column(name = "state")
     private String state;
-
 
 }

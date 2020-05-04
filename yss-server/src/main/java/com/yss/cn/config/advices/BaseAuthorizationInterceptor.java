@@ -15,7 +15,7 @@ import java.lang.reflect.Method;
 /**
  * @author Shuoshi.Yan
  * @package:com.yss.cn.config.advices
- * @className:过滤器方法
+ * @className:自定义过滤器方法
  * @description:
  * @date 2020-04-09 16:17
  * @version:V1.0

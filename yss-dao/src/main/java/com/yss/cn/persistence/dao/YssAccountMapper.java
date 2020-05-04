@@ -21,7 +21,4 @@ public interface YssAccountMapper extends BaseMapper<YssAccount> {
     //删除 根据列表id进行循环逻辑删除
     void deleteYssAccountListByListId(List<Integer> idList);
 
-    @Select("SELECT * FROM yss_account where user_name = #{userName} and is_delete = 0 limit 1")
-    YssAccount queryYssAccountByUserName(@Param("userName")String userName);
-
 }

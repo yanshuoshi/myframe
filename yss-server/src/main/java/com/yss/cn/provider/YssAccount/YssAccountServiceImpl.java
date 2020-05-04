@@ -1,10 +1,14 @@
 package com.yss.cn.provider.yssAccount;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yss.cn.api.exception.AppRuntimeException;
 import com.yss.cn.api.result.yssAccount.AuthLoginResult;
 import com.yss.cn.common.auth.TokenResult;
 import com.yss.cn.config.util.TokenUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +21,11 @@ import com.yss.cn.common.utils.*;
 import com.yss.cn.io.*;
 import com.yss.cn.api.result.yssAccount.YssAccountResult;
 import com.yss.cn.api.io.yssAccount.YssAccountIO;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import com.yss.cn.persistence.entity.YssAccount;
 
 /**
@@ -51,7 +59,9 @@ public class YssAccountServiceImpl implements YssAccountService {
         if (!StringUtils.equals(io.getPassword(), io.getConfirmPassword())) {
             throw new AppRuntimeException("新密码或确认密码必须相同");
         }
-        YssAccount yssAccount = yssAccountMapper.queryYssAccountByUserName(io.getUserName());
+        QueryWrapper<YssAccount> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("user_name",io.getUserName());
+        YssAccount yssAccount = yssAccountMapper.selectOne(queryWrapper);
         if(yssAccount != null){
             throw new AppRuntimeException("用户名已存在");
         }
@@ -76,8 +86,15 @@ public class YssAccountServiceImpl implements YssAccountService {
     @Override
     public AuthLoginResult userSecretLogin(String username, String password, String ip) {
         AuthLoginResult result = new AuthLoginResult();
-        YssAccount yssAccount = yssAccountMapper.queryYssAccountByUserName(username);
-        if(yssAccount == null){
+        QueryWrapper<YssAccount> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("user_name",username);
+        YssAccount yssAccount = yssAccountMapper.selectOne(queryWrapper);
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<YssAccount> yssAccountPage =
+                new com.baomidou.mybatisplus.extension.plugins.pagination.Page<>();
+        yssAccountPage.setCurrent(0);
+            yssAccountPage.setSize(10);
+            com.baomidou.mybatisplus.extension.plugins.pagination.Page e =  yssAccountMapper.selectPage(yssAccountPage, null);
+            if(yssAccount == null){
             throw new AppRuntimeException("用户名不存在");
         }
         if("0".equals(yssAccount.getState())){

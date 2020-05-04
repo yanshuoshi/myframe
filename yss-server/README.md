@@ -67,13 +67,13 @@ Hibernate Validator 附加的 constraint
 
 ## 权限控制
 
-在控制器中，`@WtAuthorization`注解表示此方法需要在header中传递`x-access-token`才可以访问<br/>
+在控制器中，`@Authorization`注解表示此方法需要在header中传递`x-access-token`才可以访问<br/>
 在控制器中，`@AuthToken ApiTokenResult authToken`参数表示当用户传递了`x-access-token`后，自动获取到的用户数据
 如下所示：
 ```java
 @ApiOperation(value = "用户列表", notes = "用户列表", response = AccountResult.class)
 @PostMapping("/accountList")
-@WtAuthorization
+@Authorization
 public ApiResult accountList(@AuthToken ApiTokenResult authToken, @ApiParam(required = true) @Valid @RequestBody PageListIO<AuthFormIO> body) {
     FormListResult<AccountResult> result = accountService.queryAccountPageList(body);
     return ApiResult.success(result);

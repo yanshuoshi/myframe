@@ -16,14 +16,14 @@ import org.aspectj.lang.annotation.Pointcut;
  * @description:
  * @date: 2020/4/10 11:43
  */
-@Aspect
-@Order(5)
-@Component
+//@Aspect
+//@Order(5)
+//@Component
 public class LogAspect {
 
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Pointcut("execution(public * com.yss.cn..*Controller.*(..))")
+    @Pointcut("execution(public * com.yss.cn.controller..*.*(..))")
     public void webLog() {
     }
 

@@ -4,10 +4,6 @@ import com.baomidou.mybatisplus.annotation.*;
 import java.util.Date;
 import java.io.Serializable;
 import lombok.Data;
-import javax.persistence.Table;
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 /**
  * ${table.comment}
  * @author ${author}
@@ -16,7 +12,7 @@ import javax.persistence.GenerationType;
 <#if entityLombokModel>
 </#if>
 <#if table.convert>
-@Table("${table.name}")
+@TableName("${table.name}")
 </#if>
 <#if superEntityClass??>
 @Data
@@ -40,29 +36,6 @@ public class ${entity} implements Serializable {
     /**
      * ${field.comment}
      */
-</#if>
-<#if field.keyFlag>
-<#-- 主键 -->
-<#if field.keyIdentityFlag>
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-<#elseif idType??>
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-<#elseif field.convert>
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-</#if>
-<#-- 普通字段 -->
-<#elseif field.fill??>
-<#-- -----   存在字段填充设置   ----->
-<#if field.convert>
-    @Column(value = "${field.name}", fill = FieldFill.${field.fill})
-<#else>
-    @Column(fill = FieldFill.${field.fill})
-</#if>
-<#elseif field.convert>
-    @Column(name = "${field.name}")
 </#if>
 <#-- 乐观锁注解 -->
 <#if (versionFieldName!"") == field.name>

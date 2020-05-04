@@ -25,7 +25,7 @@
             id, code, auth_mode, auth_type_code, auth_id, card_name, card_deposit, pic, is_delete, create_user, create_time, update_user, update_time, remark
         </sql>
 
-    <select id="queryTBaseAuthList" resultType="com.yss.cn.api.result.tBaseAuth.TBaseAuthResult">
+    <select id="queryTBaseAuthList" resultType="com.yss.cn.api.result.tBaseAuth.TBaseAuthResult" resultMap="BaseResultMap">
         SELECT
             <include refid="BaseColumnList"/>
         FROM t_base_auth AS a
