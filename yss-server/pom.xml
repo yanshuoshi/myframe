@@ -3,9 +3,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.yss</groupId>
-    <artifactId>server</artifactId>
+    <artifactId>yss-server</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>server</name>
+    <name>yss-server</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

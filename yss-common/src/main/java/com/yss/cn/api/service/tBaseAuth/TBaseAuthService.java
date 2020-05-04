@@ -1,9 +1,9 @@
 package com.yss.cn.api.service.tBaseAuth;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yss.cn.api.io.tBaseAuth.*;
 import com.yss.cn.io.PageListIO;
 import com.yss.cn.api.result.tBaseAuth.TBaseAuthResult;
-import com.yss.cn.results.FormListResult;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ import java.util.List;
 */
 public interface TBaseAuthService {
     //分页查询 tBaseAuth
-    FormListResult queryTBaseAuthPageList(PageListIO body);
+    Page queryTBaseAuthPageList(PageListIO body);
 
     //查询
     TBaseAuthResult findTBaseAuthResultById(Integer id);

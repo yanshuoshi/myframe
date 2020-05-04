@@ -1,5 +1,6 @@
 package com.yss.cn.api.service.yssAccount;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yss.cn.api.io.yssAccount.YssAccountIO;
 import com.yss.cn.api.result.yssAccount.AuthLoginResult;
 import com.yss.cn.api.result.yssAccount.YssAccountResult;
@@ -14,7 +15,7 @@ import java.util.List;
 */
 public interface YssAccountService {
     //分页查询
-    FormListResult queryYssAccountPageList(PageListIO body);
+    Page queryYssAccountPageList(PageListIO body);
 
     //查询
     YssAccountResult findYssAccountResultById(Integer id);

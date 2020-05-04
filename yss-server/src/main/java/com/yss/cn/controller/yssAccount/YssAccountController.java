@@ -1,5 +1,6 @@
 package com.yss.cn.controller.yssAccount;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yss.cn.api.io.yssAccount.AuthLoginIO;
 import com.yss.cn.api.io.yssAccount.YssAccountIO;
 import com.yss.cn.api.result.yssAccount.AuthLoginResult;
@@ -41,7 +42,7 @@ public class YssAccountController extends BaseController {
     @ApiOperation(value = "yssAccount列表",notes="yssAccount列表",response = YssAccountResult.class)
     @PostMapping("/yssAccountList")
     public ApiResult yssAccountList(@Valid @ApiParam(required = true) @RequestBody PageListIO<YssAccountListFromIO> body) {
-        FormListResult<YssAccountResult> result = yssAccountService.queryYssAccountPageList(body);
+        Page result = yssAccountService.queryYssAccountPageList(body);
         return ApiResult.success(result);
     }
 

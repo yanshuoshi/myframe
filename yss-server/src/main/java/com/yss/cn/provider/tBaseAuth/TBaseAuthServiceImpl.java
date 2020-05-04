@@ -1,20 +1,21 @@
 package com.yss.cn.provider.tBaseAuth;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yss.cn.api.io.tBaseAuth.*;
 import com.yss.cn.api.result.tBaseAuth.TBaseAuthResult;
 import com.yss.cn.api.service.tBaseAuth.TBaseAuthService;
 import com.yss.cn.common.utils.BeanUtil;
 import com.yss.cn.io.PageListIO;
-import com.yss.cn.results.FormListResult;
 import com.yss.cn.persistence.dao.TBaseAuthMapper;
 import com.yss.cn.persistence.entity.TBaseAuth;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  *  服务实现类
@@ -29,10 +30,18 @@ public class TBaseAuthServiceImpl implements TBaseAuthService {
     private TBaseAuthMapper tBaseAuthMapper;
 
     @Override
-    public FormListResult queryTBaseAuthPageList(PageListIO io){
-        PageHelper.startPage(io.currentPage(), io.pageSize());
-        Page page = (Page<TBaseAuthResult>) tBaseAuthMapper.queryTBaseAuthList(io.buildSQLMap());
-        return new FormListResult<TBaseAuthResult>(page);
+    public Page queryTBaseAuthPageList(PageListIO io){
+        QueryWrapper<TBaseAuth> queryWrapper = new QueryWrapper<>();
+        //此处参数处理可以提取一个公共方法
+        Map map = io.buildSQLMap();
+        if(!StringUtils.isEmpty(map.get("updateTimeRangeEnd"))){
+            queryWrapper.le("createTime",io.buildSQLMap().get("updateTimeRangeEnd"));
+        }
+        if(!StringUtils.isEmpty(map.get("updateTimeRangeStart"))){
+            queryWrapper.ge("createTime",io.buildSQLMap().get("updateTimeRangeStart"));
+        }
+        Page page = tBaseAuthMapper.selectPage(io.setPage(),queryWrapper);
+        return page;
     }
 
     @Override

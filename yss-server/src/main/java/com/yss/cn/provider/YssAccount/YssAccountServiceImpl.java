@@ -3,18 +3,18 @@ package com.yss.cn.provider.yssAccount;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yss.cn.api.exception.AppRuntimeException;
 import com.yss.cn.api.result.yssAccount.AuthLoginResult;
 import com.yss.cn.common.auth.TokenResult;
 import com.yss.cn.config.util.TokenUtil;
+import com.yss.cn.persistence.entity.TBaseAuth;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.formula.functions.T;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import com.yss.cn.results.*;
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
 import com.yss.cn.api.service.yssAccount.YssAccountService;
 import com.yss.cn.persistence.dao.YssAccountMapper;
 import com.yss.cn.common.utils.*;
@@ -43,10 +43,18 @@ public class YssAccountServiceImpl implements YssAccountService {
     private TokenUtil tokenUtil;
 
     @Override
-    public FormListResult queryYssAccountPageList(PageListIO io){
-        PageHelper.startPage(io.currentPage(), io.pageSize());
-        Page page = (Page<YssAccountResult>) yssAccountMapper.queryYssAccountList(io.buildSQLMap());
-        return new FormListResult<YssAccountResult>(page);
+    public Page queryYssAccountPageList(PageListIO io){
+        QueryWrapper<YssAccount> queryWrapper = new QueryWrapper<>();
+        //此处参数处理可以提取一个公共方法
+        Map map = io.buildSQLMap();
+        if(!org.springframework.util.StringUtils.isEmpty(map.get("updateTimeRangeEnd"))){
+            queryWrapper.le("createTime",io.buildSQLMap().get("updateTimeRangeEnd"));
+        }
+        if(!org.springframework.util.StringUtils.isEmpty(map.get("updateTimeRangeStart"))){
+            queryWrapper.ge("createTime",io.buildSQLMap().get("updateTimeRangeStart"));
+        }
+        Page page = yssAccountMapper.selectPage(io.setPage(),queryWrapper);
+        return page;
     }
 
     @Override

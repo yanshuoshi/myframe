@@ -1,5 +1,7 @@
 package com.yss.cn.io;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yss.cn.common.utils.BeanUtil;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -29,33 +31,22 @@ public class PageListIO<T> implements Serializable {
             paramMap = BeanUtil.beanToMap(this.formData);
         }
         Set<String> keySet = new HashSet<>(paramMap.keySet());
-                for (String key : keySet) {
-                    if (key.endsWith("DateRange") || key.endsWith("TimeRange") && paramMap.get(key) != null && (paramMap.get(key) instanceof Object[])) {
-                        Object[] range = (Object[]) paramMap.get(key);
-                        paramMap.put(key + "Start", range.length > 0 ? range[0] + " 00:00:00" : null);
-                        paramMap.put(key + "End", range.length > 1 ? range[1] + " 23:59:59" : null);
-                    }
-                    if (paramMap.get(key) != null && paramMap.get(key) instanceof String) {
-                        paramMap.put(key, StringUtils.trimToEmpty(String.valueOf(paramMap.get(key))));
+        for (String key : keySet) {
+            if (key.endsWith("DateRange") || key.endsWith("TimeRange") && paramMap.get(key) != null && (paramMap.get(key) instanceof Object[])) {
+                Object[] range = (Object[]) paramMap.get(key);
+                paramMap.put(key + "Start", range.length > 0 ? range[0] + " 00:00:00" : null);
+                paramMap.put(key + "End", range.length > 1 ? range[1] + " 23:59:59" : null);
+            }
+            if (paramMap.get(key) != null && paramMap.get(key) instanceof String) {
+                paramMap.put(key, StringUtils.trimToEmpty(String.valueOf(paramMap.get(key))));
             }
         }
         return paramMap;
     }
-
-    /**
-     * PageHelper 工具类分页从1开始，前台接口为了统一去文，第一页是从0开始。
-     * @return
-     */
-    public int currentPage() {
-        if (pageData == null)
-            return 1;
-        return Math.max(pageData.getCurrentPage() + 1, 1);
+    public Page setPage(){
+        Page page = new Page();
+        page.setSize(pageData.getSize());
+        page.setCurrent(pageData.getCurrent());
+        return page;
     }
-
-    public int pageSize() {
-        if (pageData == null)
-            return 20;
-        return pageData.getPageSize();
-    }
-
 }

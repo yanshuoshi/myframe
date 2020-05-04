@@ -1,5 +1,6 @@
 package com.yss.cn.controller.tBaseAuth;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yss.cn.api.io.tBaseAuth.*;
 import com.yss.cn.api.result.tBaseAuth.TBaseAuthListResult;
 import com.yss.cn.api.result.tBaseAuth.TBaseAuthResult;
@@ -12,7 +13,6 @@ import com.yss.cn.io.PageListIO;
 import com.yss.cn.io.SimpleIO;
 import com.yss.cn.io.SimpleListIO;
 import com.yss.cn.results.ApiResult;
-import com.yss.cn.results.FormListResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -42,7 +42,7 @@ public class TBaseAuthController  extends BaseController {
     @PostMapping("/tBaseAuthList")
     @Authorization
     public ApiResult tBaseAuthList(@AuthToken TokenResult authToken, @Valid @ApiParam(required = true) @RequestBody PageListIO<TBaseAuthListFromIO> body) {
-        FormListResult<TBaseAuthResult> result = tBaseAuthService.queryTBaseAuthPageList(body);
+        Page result = tBaseAuthService.queryTBaseAuthPageList(body);
         return ApiResult.success(result);
     }
 
