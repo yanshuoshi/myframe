@@ -3,8 +3,6 @@
 ## 总体概况
 使用SpringBoot、MyBatisPlus、Swagger、自定义注解、JWT、MySQL以及提供MyBatisPlus + ftl模板进行代码生成等
 
-## 特别注意
-1. mybatisplus 查询时必须使用resultMap指定返回对象
 
 ## 工程模块描述
 
@@ -106,5 +104,8 @@ Hibernate Validator 附加的 constraint
 
 * [yss-server]工程中，入参使用IO对象，不建议使用其他类型（特殊情况可以使用）
 * [yss-server]工程中，方法接口返回值为Result对象，不建议使用其他类型（特殊情况可以使用）
+
+## 特别注意
+1. mybatisplus 查询时必须使用resultMap指定返回对象
 
 
