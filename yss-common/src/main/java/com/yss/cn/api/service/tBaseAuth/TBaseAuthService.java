@@ -1,6 +1,7 @@
 package com.yss.cn.api.service.tBaseAuth;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.yss.cn.api.io.tBaseAuth.*;
 import com.yss.cn.io.PageListIO;
 import com.yss.cn.api.result.tBaseAuth.TBaseAuthResult;

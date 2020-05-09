@@ -2,6 +2,8 @@ package com.yss.cn.provider.tBaseAuth;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yss.cn.api.io.tBaseAuth.*;
 import com.yss.cn.api.result.tBaseAuth.TBaseAuthResult;
 import com.yss.cn.api.service.tBaseAuth.TBaseAuthService;
@@ -9,6 +11,8 @@ import com.yss.cn.common.utils.BeanUtil;
 import com.yss.cn.io.PageListIO;
 import com.yss.cn.persistence.dao.TBaseAuthMapper;
 import com.yss.cn.persistence.entity.TBaseAuth;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -24,11 +28,10 @@ import java.util.Map;
  */
 @Service
 @Transactional
-public class TBaseAuthServiceImpl implements TBaseAuthService {
+public class TBaseAuthServiceImpl implements TBaseAuthService{
 
     @Resource
     private TBaseAuthMapper tBaseAuthMapper;
-
     @Override
     public Page queryTBaseAuthPageList(PageListIO io){
         QueryWrapper<TBaseAuth> queryWrapper = new QueryWrapper<>();
