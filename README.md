@@ -1,43 +1,49 @@
 # myframe
 
-## 特别注意
-1. mybatisplus 查询时必须使用resultMap指定返回对象
+## 总体概况
+使用SpringBoot、MyBatisPlus、Swagger、自定义注解、JWT、MySQL以及提供MyBatisPlus + ftl模板进行代码生成等
+
 
 ## 工程模块描述
 
 ```
-yss-common | 基础类(自定义异常、入参、回参、service接口、自定义注解、公共类[三层、入参、回参、ws]、枚举、util)
-yss-dao | 数据库Entity、数据库Mapper 
-yss-server | 服务（默认前台接口和后台接口共用工程，使用api和modules区分） 
+yss-common | 基础工程(自定义异常、入参回参、service接口、自定义注解、公共类[公共的入参回参等]、枚举、util)
+yss-dao | 数据库的Entity、Mapper、xml 
+yss-server | 业务处理工程 
 ```
 
 ## 主要类说明
 
 `yss-common`工程包含了业务相关的DO、DTO。<br/>
 1. `exception`为共同使用的异常类，业务中的运行异常通过`AppRuntimeException`向外抛出。<br/>
-2. `io`为网页请求的表单接收对象，需要使用swagger中的相关注解（如@ApiModel等）进行接口文档的说明，使用hibernate.validator中的相关注解（如@NotBlank等，详情见下文）进行入参校验。<br/>
+2. `io`为网页请求的表单接收对象，需要使用swagger中的相关注解（如@ApiModel等）进行接口文档的说明，使用hibernate.validator中的相关注解（如@NotBlank等 ）进行入参校验。<br/>
 3. `result`为返回到前台的数据对象，需要使用swagger中的相关注解（如@ApiModel等）进行接口文档的说明。<br/>
 4. `service`为消费者、提供者共用的接口类。<br/>
+5. `common`提供各种util
+6. `constants`设置常量及枚举
 
 ## 入参校验
 
 当入参类型为@RequestBody时，使用@Valid标记AuthFormIO类为参数验证状态。
 ```java
 @PostMapping("/login")
-public ApiResult login(@ApiParam(required = true) @Valid @RequestBody AuthFormIO body) {
-    AccountLoginResult result = authService.login("test", "test", "127");
-    return ApiResult.success(result);
+public ApiResult login(@ApiParam(required = true) @Valid @RequestBody AuthLoginIO body) {
+    AuthLoginResult result = yssAccountService.userSecretLogin(body.getUserName(), body.getPassword(), NetworkUtil.getIpAddress(request));
+        return ApiResult.success(result);
 }
 ```
 使用入参校验相关注解方法进行校验
 ```java
-public class AuthFormIO implements Serializable {
+
+@ApiModel(value = "AuthLoginIO", description = "用户登录表单")
+public class AuthLoginIO implements Serializable {
+
     @NotBlank(message = "用户名不能为空")
-    private String username;
+    @ApiModelProperty(value = "用户名", example = "admin")
+    private String userName;
     @NotBlank(message = "密码不能为空")
+    @ApiModelProperty(value = "密码", example = "123456")
     private String password;
-    @ApiModelProperty(value = "IP地址", example = "127.0.0.1")
-    private String ip;
 }
 ```
 
@@ -68,16 +74,16 @@ Hibernate Validator 附加的 constraint
 ## 权限控制
 
 在控制器中，`@Authorization`注解表示此方法需要在header中传递`x-access-token`才可以访问<br/>
-在控制器中，`@AuthToken ApiTokenResult authToken`参数表示当用户传递了`x-access-token`后，自动获取到的用户数据
+在控制器中，`@AuthToken TokenResult authToken`参数表示当用户传递了`x-access-token`后，自动获取到的用户数据
 如下所示：
 ```java
-@ApiOperation(value = "用户列表", notes = "用户列表", response = AccountResult.class)
-@PostMapping("/accountList")
-@WtAuthorization
-public ApiResult accountList(@AuthToken ApiTokenResult authToken, @ApiParam(required = true) @Valid @RequestBody PageListIO<AuthFormIO> body) {
-    FormListResult<AccountResult> result = accountService.queryAccountPageList(body);
-    return ApiResult.success(result);
-}
+    @ApiOperation(value = "tBaseAuth列表",notes="tBaseAuth列表",response = TBaseAuthListResult.class)
+    @PostMapping("/tBaseAuthList")
+    @Authorization
+    public ApiResult tBaseAuthList(@AuthToken TokenResult authToken, @Valid @ApiParam(required = true) @RequestBody PageListIO<TBaseAuthListFromIO> body) {
+        Page result = tBaseAuthService.queryTBaseAuthPageList(body);
+        return ApiResult.success(result);
+    }
 ```
 
 
@@ -98,5 +104,8 @@ public ApiResult accountList(@AuthToken ApiTokenResult authToken, @ApiParam(requ
 
 * [yss-server]工程中，入参使用IO对象，不建议使用其他类型（特殊情况可以使用）
 * [yss-server]工程中，方法接口返回值为Result对象，不建议使用其他类型（特殊情况可以使用）
+
+## 特别注意
+1. mybatisplus 查询时必须使用resultMap指定返回对象
 
 
