@@ -48,10 +48,10 @@ public class YssAccountServiceImpl implements YssAccountService {
         //此处参数处理可以提取一个公共方法
         Map map = io.buildSQLMap();
         if(!org.springframework.util.StringUtils.isEmpty(map.get("updateTimeRangeEnd"))){
-            queryWrapper.le("createTime",io.buildSQLMap().get("updateTimeRangeEnd"));
+            queryWrapper.le("create_time",io.buildSQLMap().get("updateTimeRangeEnd"));
         }
         if(!org.springframework.util.StringUtils.isEmpty(map.get("updateTimeRangeStart"))){
-            queryWrapper.ge("createTime",io.buildSQLMap().get("updateTimeRangeStart"));
+            queryWrapper.ge("create_time",io.buildSQLMap().get("updateTimeRangeStart"));
         }
         Page page = yssAccountMapper.selectPage(io.setPage(),queryWrapper);
         return page;

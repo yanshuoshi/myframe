@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.toolkit.ObjectUtils;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
 import com.baomidou.mybatisplus.spring.boot.starter.SpringBootVFS;
+import org.apache.ibatis.logging.stdout.StdOutImpl;
 import org.apache.ibatis.mapping.DatabaseIdProvider;
 import org.apache.ibatis.plugin.Interceptor;
 import org.mybatis.spring.boot.autoconfigure.MybatisProperties;
@@ -14,9 +15,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.util.StringUtils;
 
 import javax.sql.DataSource;
+import java.io.IOException;
 
 /**
  * @author Shuoshi.Yan
@@ -64,6 +67,16 @@ public class MybatisPlusConfig {
         MybatisSqlSessionFactoryBean mybatisPlus = new MybatisSqlSessionFactoryBean();
         mybatisPlus.setDataSource(dataSource);
         mybatisPlus.setVfs(SpringBootVFS.class);
+
+        // 指明mapper.xml位置(配置文件中指明的xml位置会失效用此方式代替，具体原因未知)
+        try {
+            mybatisPlus.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:/mapper/**Mapper.xml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // 指明实体扫描(多个package用逗号或者分号分隔)
+        mybatisPlus.setTypeAliasesPackage("com.yss.cn.persistence.dao");
+
         if (StringUtils.hasText(this.properties.getConfigLocation())) {
             mybatisPlus.setConfigLocation(this.resourceLoader.getResource(this.properties.getConfigLocation()));
         }
@@ -74,6 +87,8 @@ public class MybatisPlusConfig {
         mc.setDefaultScriptingLanguage(MybatisXMLLanguageDriver.class);
         //数据库字段设计为驼峰命名，默认开启的驼峰转下划线会报错字段找不到
         mc.setMapUnderscoreToCamelCase(false);
+        //mp 打印sql
+        mc.setLogImpl(StdOutImpl.class);
         mybatisPlus.setConfiguration(mc);
         if (this.databaseIdProvider != null) {
             mybatisPlus.setDatabaseIdProvider(this.databaseIdProvider);

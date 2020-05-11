@@ -16,24 +16,27 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author:Shuoshi.Yan
- * @description: 打印结果拦截器
+ * @description: 打印结果拦截器 若使用mp，此处不能打印，需配置mp就可以打印sql
  * @date: 2020/4/28 18:15
  */
 @Component
 @Intercepts({@Signature(type = Executor.class, method = "query", args = {
         MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class, CacheKey.class, BoundSql.class})})
-public class MyBatisInterceptorForResult implements Interceptor{
+public class MyBatisInterceptorForResult implements Interceptor
+{
 
     @SuppressWarnings({"rawtypes", "unchecked"})
     public Object intercept(Invocation invocation)
-            throws Throwable{
+            throws Throwable
+    {
         Object result = invocation.proceed(); // 执行请求方法，并将所得结果保存到result中
         String str = JSON.toJSONString(result);
         System.out.println(str);
         return result;
     }
 
-    public Object plugin(Object target){
+    public Object plugin(Object target)
+    {
         return Plugin.wrap(target, this);
     }
 

@@ -25,7 +25,7 @@ import java.util.regex.Matcher;
 /**
  * @author Shuoshi.Yan
  * @package:com.yss.config.interceptor
- * @className:拦截打印完整sql语句
+ * @className:拦截打印完整sql语句，使用mp，需要配置mp独有的拦截，此处不起作用
  * @description:
  * @date 2020-04-09 11:51
  * @version:V1.0

@@ -40,7 +40,7 @@ public class TBaseAuthController  extends BaseController {
 
     @ApiOperation(value = "tBaseAuth列表",notes="tBaseAuth列表",response = TBaseAuthListResult.class)
     @PostMapping("/tBaseAuthList")
-    @Authorization
+//    @Authorization
     public ApiResult tBaseAuthList(@AuthToken TokenResult authToken, @Valid @ApiParam(required = true) @RequestBody PageListIO<TBaseAuthListFromIO> body) {
         Page result = tBaseAuthService.queryTBaseAuthPageList(body);
         return ApiResult.success(result);

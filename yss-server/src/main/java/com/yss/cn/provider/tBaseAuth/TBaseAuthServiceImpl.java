@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -38,10 +39,10 @@ public class TBaseAuthServiceImpl implements TBaseAuthService{
         //此处参数处理可以提取一个公共方法
         Map map = io.buildSQLMap();
         if(!StringUtils.isEmpty(map.get("updateTimeRangeEnd"))){
-            queryWrapper.le("createTime",io.buildSQLMap().get("updateTimeRangeEnd"));
+            queryWrapper.le("create_time",io.buildSQLMap().get("updateTimeRangeEnd"));
         }
         if(!StringUtils.isEmpty(map.get("updateTimeRangeStart"))){
-            queryWrapper.ge("createTime",io.buildSQLMap().get("updateTimeRangeStart"));
+            queryWrapper.ge("create_time",io.buildSQLMap().get("updateTimeRangeStart"));
         }
         Page page = tBaseAuthMapper.selectPage(io.setPage(),queryWrapper);
         return page;
